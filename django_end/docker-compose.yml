@@ -1,0 +1,33 @@
+services:
+  web:
+    build: .
+    command: gunicorn django_end.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - static_volume:/home/constructor/django_end/static
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: Wiw30122546
+    volumes:
+      - dbdata:/var/lib/mysql
+     
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  dbdata:
+  static_volume:
+  media_volume:
