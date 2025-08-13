@@ -205,3 +205,33 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# --- Django (เพิ่มเติม) ---
+# เก็บ static ที่ collectstatic แล้ว
+/staticfiles/
+# ไฟล์อัปโหลดผู้ใช้
+/media/
+# ไฟล์ key/secrets แบบ custom
+secrets.json
+
+# --- Docker ---
+# env จริง ห้ามขึ้น git
+.env
+# ไฟล์ override เฉพาะเครื่อง
+docker-compose.override.yml
+# ไฟล์/โฟลเดอร์ที่ daemon หรือสคริปต์สร้าง
+*.pid
+
+# --- ระบบปฏิบัติการ/IDE (เสริม) ---
+# Windows
+Thumbs.db
+# macOS
+.DS_Store
+# VSCode (ถ้าไม่อยากขึ้น)
+.vscode/
+# JetBrains (ถ้าใช้)
+.idea/
+
+# --- Database (ถ้ามีไฟล์ท้องถิ่น) ---
+*.sqlite3
+*.db
